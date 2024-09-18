@@ -25,19 +25,21 @@
     </noscript>
 
     <script>
-      const apiKey = 'ac422af861b94fb9be5592528e3552b6';
-      fetch(`https://api.ipgeolocation.io/ipgeo?apiKey=${apiKey}`)
-        .then(response => response.json())
-        .then(data => {
-          document.getElementById('city-data').innerHTML = `
-            City: ${data.city} <br>
-            Region: ${data.state_prov} <br>
-            Country: ${data.country_name} <br>
-            IP: ${data.ip}
-          `;
-        })
-        .catch(error => console.error('Error fetching city data:', error));
-
+      document.addEventListener('DOMContentLoaded', () => {
+        const apiKey = 'ac422af861b94fb9be5592528e3552b6';
+        fetch(`https://api.ipgeolocation.io/ipgeo?apiKey=${apiKey}`)
+          .then(response => response.json())
+          .then(data => {
+            document.getElementById('city-data').innerHTML = `
+              City: ${data.city} <br>
+              Region: ${data.state_prov} <br>
+              Country: ${data.country_name} <br>
+              IP: ${data.ip}
+            `;
+          })
+          .catch(error => console.error('Error fetching city data:', error));
+      });
+      
     </script>
     <script type="module" src="/src/main.js"></script>
   </body>
