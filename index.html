@@ -3,46 +3,58 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="Access-Control-Allow-Origin" content="*" />
+    <!-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="path-to-your-logo.png" />
-    <meta name="description" content="Your site description" />
-    <meta name="author" content="Your Name" />
+    <link rel="icon" href="/images/icon/favicon.ico" />
+    <link rel="apple-touch-icon" href="/images/logo/apple-touch-icon.png" />
+    <link rel="bookmark" href="/images/logo/apple-touch-icon.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="200x200" href="/images/logo/apple-touch-icon.png" />
+    <meta name="description" content="A place to hold my secret" />
+    <meta name="keywords" content="Personal Website, Henry Tang" />
+    <meta name="author" content="Henry Tang" />
     <meta name="theme-color" content="#424242" />
-    <title>Your Site Name</title>
+    <title>Henry's Space</title>
+    <!-- HarmonyOS Sans -->
+    <!-- 本站 CDN 已开启防盗链，非本站域名不可访问，请更改链接为下方内容，否则自定义字体将失效 -->
     <link rel="stylesheet" href="https://s1.hdslb.com/bfs/static/jinkela/long/font/regular.css" />
-  </head>
+    <!-- <link rel="stylesheet" href="https://cdn.imsyy.top/gh/imsyy/file/font/HarmonyOS_Sans/regular.min.css" /> -->
+    <!-- IE Out -->
+    <script>
+      if (/*@cc_on!@*/ false || (!!window.MSInputMethodContext && !!document.documentMode))
+        window.location.href =
+          'https://support.dmeng.net/upgrade-your-browser.html?referrer=' +
+          encodeURIComponent(window.location.href);
+    </script>
+    <script type="module" crossorigin src="/assets/index-73cf90b8.js"></script>
+    <link rel="stylesheet" href="/assets/index-74973286.css">
+  <link rel="manifest" href="/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/registerSW.js"></script></head>
 
   <body>
     <!-- 主体内容 -->
     <div id="app"></div>
-    <div id="city-info">
-      <h3>City Information</h3>
-      <p id="city-data">Loading city data...</p>
-    </div>
+    <div id="city-data">Loading city data...</div>
 
+    <!-- noscript -->
     <noscript>
       <div style="text-align: center">请开启 JavaScript</div>
     </noscript>
 
+    <!-- Add the weather script here -->
     <script>
       document.addEventListener('DOMContentLoaded', () => {
-        const apiKey = 'ac422af861b94fb9be5592528e3552b6';
-        fetch(`https://api.ipgeolocation.io/ipgeo?apiKey=${apiKey}`)
-          .then(response => response.json())
-          .then(data => {
-            console.log(data);
+        fetch('/src/api/index.js')
+          .then(() => getWeatherInfo())
+          .then(weatherData => {
             document.getElementById('city-data').innerHTML = `
-              City: ${data.city} <br>
-              Region: ${data.state_prov} <br>
-              Country: ${data.country_name} <br>
-              IP: ${data.ip}
+              Temperature: ${weatherData.now.temp}°C <br>
+              Weather: ${weatherData.now.text}
             `;
           })
-          .catch(error => console.error('Error fetching city data:', error));
+          .catch(error => console.error('Error fetching weather info:', error));
       });
-      
     </script>
-    <script type="module" src="/src/main.js"></script>
+
+    
   </body>
 </html>
 
