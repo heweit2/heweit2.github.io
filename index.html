@@ -21,8 +21,8 @@
           'https://support.dmeng.net/upgrade-your-browser.html?referrer=' +
           encodeURIComponent(window.location.href);
     </script>
-    <script type="module" crossorigin src="/assets/index-a8b1ae3e.js"></script>
-    <link rel="stylesheet" href="/assets/index-98408e42.css">
+    <script type="module" crossorigin src="/assets/index-a800957d.js"></script>
+    <link rel="stylesheet" href="/assets/index-becd5c0c.css">
   <link rel="manifest" href="/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/registerSW.js"></script></head>
 
   <body>
@@ -39,7 +39,7 @@
     <script>
       document.addEventListener('DOMContentLoaded', () => {
         fetch('/src/api/index.js')
-          .then(() => getOtherWeather()) // Ensure this is using getOtherWeather()
+          .then(() => getWeatherInfo()) // Ensure this is using getOtherWeather()
           .then(weatherData => {
             const forecast = weatherData.daily.slice(0, 3); // Get 3-day forecast
             document.getElementById('city-data').innerHTML = forecast.map(day => `
