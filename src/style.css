@@ -741,3 +741,21 @@ button:focus {
 .fork-btn-inner::after {
   display: none !important;
 }
+/* Avatar container to position the canvas properly */
+.avatar-container {
+  position: relative;
+  display: inline-block;
+}
+
+/* Light purple canvas */
+.purple-canvas {
+  position: absolute;
+  top: 47%; /* Adjust to align beneath the avatar */
+  left: 47%;
+  transform: translate(-50%, -50%);
+  height: 290px; /* Adjust height */
+  width: 270px; /* Adjust width */
+  background-color: #c084fc; /* Matches the purple color in your theme */
+  z-index: -1; /* Ensure it appears behind the avatar */
+  border-radius: 10px; /* Optional for rounded edges */
+}
